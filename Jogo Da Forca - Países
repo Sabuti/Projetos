@@ -1,0 +1,156 @@
+import random
+
+def jogar():
+    print('___________________')
+    print('___JOGO DA FORCA___')
+    print('___edição países___')
+    print('___________________')
+    print(' ')
+    print('dica: para separação de palavras é _ e tem - também')
+    print(' ')
+
+    arquivo1 = open("paises.txt", "r")
+    paravras = []
+
+
+    for linha in arquivo1:
+        linha = linha.strip()
+        paravras.append(linha)
+    arquivo1.close()
+
+    def desenha_forca(tentativas):
+        print("  _______     ")
+        print(" |/      |    ")
+
+        if (tentativas == 7):
+            print(" |      (_)   ")
+            print(" |            ")
+            print(" |            ")
+            print(" |            ")
+
+        if (tentativas == 6):
+            print(" |      (_)   ")
+            print(" |      \     ")
+            print(" |            ")
+            print(" |            ")
+
+        if (tentativas == 5):
+            print(" |      (_)   ")
+            print(" |      \|    ")
+            print(" |            ")
+            print(" |            ")
+
+        if (tentativas == 4):
+            print(" |      (_)   ")
+            print(" |      \|/   ")
+            print(" |            ")
+            print(" |            ")
+
+        if (tentativas == 3):
+            print(" |      (_)   ")
+            print(" |      \|/   ")
+            print(" |       |    ")
+            print(" |            ")
+
+        if (tentativas == 2):
+            print(" |      (_)   ")
+            print(" |      \|/   ")
+            print(" |       |    ")
+            print(" |      /     ")
+
+        if (tentativas == 1):
+            print(" |      (_)   ")
+            print(" |      \|/   ")
+            print(" |       |    ")
+            print(" |      / \   ")
+
+        print(" |            ")
+        print("_|___         ")
+
+    numero = random.choice(paravras)
+    palavra_secreta = numero.lower()
+    letras_totais = ['*' for letra in palavra_secreta]
+
+    print("Sua palavra da vez é", letras_totais)
+    print(' ')
+
+    enforcou = False
+    acertou = False
+    tentativas = 7
+    letras_tentadas = []
+
+    while not enforcou and not acertou:
+        print('1 para palpite ou 2 para uma letra')
+        letra_chute = input('Deseja dar um palpite da palavra ou mais uma letra')
+
+        if letra_chute == '1':
+            palpite = input('Qual palavra você acha que é?')
+
+            if palpite == palavra_secreta:
+                print('Caramba, essa mesmo!')
+                break
+            elif palpite != palavra_secreta:
+                print('Putz, essa não é a palavra certa')
+                continue
+        elif letra_chute == '2':
+            chute = input("Qual letra você acha?")
+            chute = chute.strip()
+            index = 0
+
+            letra: str
+            for letra in palavra_secreta:
+                if chute.lower() == letra.lower():
+                    letras_totais[index] = letra
+                    print("Boa, essa está na palavra")
+                    letras_tentadas.append(chute)
+                    novas_letras_tentadas = list(dict.fromkeys(letras_tentadas))
+                    print('já foram tentadas as letras', novas_letras_tentadas)
+                index = index + 1
+            if chute.lower() not in palavra_secreta:
+                print("Essa letra não está na palavra secreta")
+                desenha_forca(tentativas)
+                tentativas = tentativas - 1
+                letras_tentadas.append(chute)
+                novas_letras_tentadas = list(dict.fromkeys(letras_tentadas))
+                print('já foram tentadas as letras',novas_letras_tentadas)
+            print(letras_totais)
+    if tentativas == 0:
+        enforcou = True
+        print(' ')
+        print("Pessoa enforcada, você perdeu")
+        print("A palavra era", palavra_secreta)
+        print("     _______________         ")
+        print("    /               \       ")
+        print("   /                 \      ")
+        print("/\/                   \/\  ")
+        print("\ |   XXXX     XXXX   | /   ")
+        print(" \|   XXXX     XXXX   |/     ")
+        print("  |   XXX       XXX   |      ")
+        print("  |                   |      ")
+        print("  \__      XXX      __/     ")
+        print("    |\     XXX     /|       ")
+        print("    | |           | |        ")
+        print("    | I I I I I I I |        ")
+        print("    |  I I I I I I  |        ")
+        print("    \_             _/       ")
+        print("      \_         _/         ")
+        print("        \_______/           ")
+    if '*' not in letras_totais or palpite == palavra_secreta:
+        acertou = True
+        print(' ')
+        print("Parabéns! Você ganhou!")
+        print("       ___________      ")
+        print("      '._==_==_=_.'     ")
+        print("      .-\\:      /-.    ")
+        print("     | (|:.     |) |    ")
+        print("      '-|:.     |-'     ")
+        print("        \\::.    /      ")
+        print("         '::. .'        ")
+        print("           ) (          ")
+        print("         _.' '._        ")
+        print("        '-------'       ")
+    print('Fim do jogo')
+
+
+if __name__ == "__main__":
+    jogar()
