@@ -1,0 +1,63 @@
+import random
+
+def jogar():
+    print('___________________')
+    print('Jogo da Adivinhação')
+    print('___________________')
+    print(' ')
+
+    numero_secreto = random.randrange(1,41)
+    tentativas = 0
+    rodada = 1
+
+    print('Opções de Dificuldade 1 (fácil) 2 (médio) 3 (muito difícil)')
+    dificulade = int(input('Escolha a dificuldade:'))
+    print(' ')
+    print('Você escolheu a dificulade', dificulade)
+    print(' ')
+
+    if dificulade == 1:
+        tentativas = 20
+    elif dificulade == 2:
+        tentativas = 10
+    else:
+        tentativas = 5
+    for rodada in range(1, tentativas + 1):
+        print('você está na rodada', rodada, 'de', tentativas)
+        print('- Dica: está entre 1 e 40')
+        print(' ')
+        chute_str = input('Qual você acha que é o número secreto?  ')
+        chute = int(chute_str)
+        chutemaior = chute > numero_secreto
+        chutemenor = chute < numero_secreto
+        na_mosca = chute == numero_secreto
+
+        if chute <= 0:
+            print(' ')
+            print('O número secreto é positivo')
+            print(' ')
+            continue
+        if chute > 50:
+            print(' ')
+            print('Com certeza o número secreto é menor que isso')
+            print(' ')
+            continue
+        if na_mosca:
+            print(' ')
+            print('Parabéns! Você acertou!')
+            print('You Win!')
+            break
+        else:
+            if chutemaior:
+                print('Putz, parece que você chutou algo maior')
+                print(' ')
+            elif chutemenor:
+                print('Putz, parece que você chutou algo menor')
+                print(' ')
+    if rodada == 3 & chute != numero_secreto:
+        print(' ')
+        print('Acabou suas tentativas, perdeu')
+        print('Fim de Jogo')
+    else:
+        print(' ')
+        print('Fim de Jogo')
