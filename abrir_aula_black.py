@@ -111,6 +111,7 @@ class CAE_Modulada:
         usa.click(x=575, y=612) # prof claudia
         time.sleep(2)
         usa.click(x=554, y=682) # proxima aula, espero
+        usa.click(x=1553, y=462) # entrar de fato
         usa.alert('Vc está dentro da aula')
 class CR:
     def __init__(self) -> None:
@@ -162,7 +163,7 @@ while True:
             aula_agora = MS()
         if time.strftime('%H') == aula['hora3'] and time.strftime('%M') == aula['minute3']:
             Entra_Aula()
-            aula_agora = CAE_Modulada() # ainda não terminei
+            aula_agora = CAE_Modulada() # acho que terminei (?)
             break
     if time.strftime('%A') == 'Thursday':
         if time.strftime('%H') == aula['hora2'] and time.strftime('%M') == aula['minute2']:
