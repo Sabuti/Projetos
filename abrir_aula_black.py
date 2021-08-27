@@ -8,7 +8,6 @@ class Entra_Aula:
         usa.click(x=523, y=1053)
         time.sleep(5)
         usa.hotkey('ctrlleft','t')
-        usa.write('https://ava.pucpr.br/blackboardauth/')
         usa.press('enter')
         time.sleep(4)
         usa.press('enter')
