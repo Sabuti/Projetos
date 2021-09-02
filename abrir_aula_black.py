@@ -1,8 +1,16 @@
-import time
+import time, psutil, winsound
 import pyautogui as usa
+
 
 class Entra_Aula:
     def __init__(self) -> None:
+        if 'Spotify.exe' in (i.name() for i in psutil.process_iter()):
+            usa.click(x=648, y=1049)
+            time.sleep(1)
+            usa.click(x=958, y=952)
+        else:
+            pass
+        winsound.PlaySound("Lets do it Its go time2.wav", winsound.SND_FILENAME)
         usa.alert('A aula já já vai começar')
         usa.hotkey('winleft','d')
         usa.click(x=523, y=1053)
@@ -74,6 +82,8 @@ class FM_sexta:
         usa.click(x=551, y=369) # abrir aulas teoricas terça
         time.sleep(.5)
         usa.click(x=568, y=444)
+        time.sleep(1)
+        usa.click(x=1569, y=147)
         usa.alert('Vc está dentro da aula')
 class EMB:
     def __init__(self) -> None:
@@ -90,13 +100,13 @@ class EMB:
 class MS:
     def __init__(self) -> None:
         usa.click(x=239, y=1007) # entrar em MS
-        time.sleep(1)
+        time.sleep(2)
         usa.click(x=142, y=520) # entrar webconferencia
         time.sleep(2)
         usa.click(x=586, y=516) # entrar aula 1
         time.sleep(2)
         usa.click(x=436, y=470) # entrar 2o link
-        time.sleep(3)
+        time.sleep(4)
         usa.click(x=964, y=778) # para participar
         usa.alert('Vc está dentro da aula')
 class CAE_Modulada:
@@ -104,9 +114,9 @@ class CAE_Modulada:
         usa.click(x=331, y=865) # entrar em CAE modulada
         time.sleep(1)
         usa.click(x=151, y=539) # entrar webconferencia
-        time.sleep(2)
-        usa.click(x=499, y=418) # entrar blackboard
         time.sleep(3)
+        usa.click(x=499, y=418) # entrar blackboard
+        time.sleep(4)
         usa.click(x=575, y=612) # prof claudia
         time.sleep(2)
         usa.click(x=554, y=682) # proxima aula, espero
@@ -117,9 +127,9 @@ class CR:
         usa.click(x=245, y=902) # entrar em CR
         time.sleep(1)
         usa.click(x=142, y=520) # entrar webconferencia
-        time.sleep(2)
-        usa.click(x=499, y=418) # entrar blackboard
         time.sleep(3)
+        usa.click(x=499, y=418) # entrar blackboard
+        time.sleep(4)
         usa.click(x=513, y=473) # entrar aula
         time.sleep(2)
         usa.click(x=1521, y=467) # entrar dnv
@@ -133,8 +143,10 @@ class CAE_Completa:
         usa.click(x=499, y=418) # entrar blackboard
         time.sleep(3)
         usa.click(x=502, y=679) # abrir lista completa
-        time.sleep(1)
+        time.sleep(2)
         usa.click(x=541, y=762) # entrar proxima aula espero
+        time.sleep(1)
+        usa.click(x=1538, y=475) # entrar ultima 
         usa.alert('Vc está dentro da aula')
 aula = {'hora1': '07','minute1': '45', 'hora2' : '09', 'minute2' : '35', 'hora3' : '11', 'minute3' : '05'}
 while True:
@@ -160,6 +172,7 @@ while True:
         if time.strftime('%H') == aula['hora2'] and time.strftime('%M') == aula['minute2']:
             Entra_Aula()
             aula_agora = MS()
+            break
         if time.strftime('%H') == aula['hora3'] and time.strftime('%M') == aula['minute3']:
             Entra_Aula()
             aula_agora = CAE_Modulada() # acho que terminei (?)
@@ -176,7 +189,7 @@ while True:
     if time.strftime('%A') == 'Friday':
         if time.strftime('%H') == aula['hora1'] and time.strftime('%M') == aula['minute1']:
             Entra_Aula()
-            aula_agora = FM_sexta() # ainda não terminei
+            aula_agora = FM_sexta() # acho que terminei (?)
             break
         if time.strftime('%H') == aula['hora2'] and time.strftime('%M') == aula['minute2']:
             Entra_Aula()
@@ -184,5 +197,5 @@ while True:
             break
         if time.strftime('%H') == aula['hora3'] and time.strftime('%M') == aula['minute3']:
             Entra_Aula()
-            aula_agora = CAE_Completa() # ainda não terminei
+            aula_agora = CAE_Completa() # acho que terminei (?)
             break
