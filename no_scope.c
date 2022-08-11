@@ -2,7 +2,6 @@
 #include <stdlib.h>
 
 int main(){
-    int pao;
     int i;
     int escolha1, escolha2;
     printf("De quanto vc quer sair? ");
